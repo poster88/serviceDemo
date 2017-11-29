@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".MyService"/>
+        <activity android:name=".SecondActivity"
+            android:label="SecondActivity"/>
+        <service android:name=".MyService" />
+        <service android:name=".SecondService"/>
     </application>
 
 </manifest>
