@@ -18,8 +18,17 @@
         </activity>
         <activity android:name=".SecondActivity"
             android:label="SecondActivity"/>
+        <activity android:name=".ThirdActivity"
+            android:label="ThirdActivity"/>
+
         <service android:name=".MyService" />
         <service android:name=".SecondService"/>
+
+        <service android:name=".ThirdService">
+            <intent-filter>
+                <action android:name="com.example.user.servicedemo.ThirdService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
