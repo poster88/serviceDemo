@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 /**
  * Created by User on 029 29.11.17.
@@ -16,6 +17,7 @@ import android.view.View;
 
 public class ThirdActivity extends AppCompatActivity {
     private final static String MY_LOG = "myLog";
+    private Button unBindBtn;
 
     private boolean bound = false;
     ServiceConnection sConn;
@@ -26,7 +28,15 @@ public class ThirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.third_activity);
 
-        intent = new Intent("com.example.user.servicedemo.ThirdService");
+        unBindBtn = findViewById(R.id.btnUnBind);
+        unBindBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickUnBind();
+            }
+        });
+
+        intent = new Intent(ThirdActivity.this, ThirdService.class);
         sConn = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -45,10 +55,10 @@ public class ThirdActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        onClickUnBind(null);
+        onClickUnBind();
     }
 
-    private void onClickUnBind(View v) {
+    private void onClickUnBind() {
         if (!bound) return;
         unbindService(sConn);
         bound = false;
@@ -63,7 +73,7 @@ public class ThirdActivity extends AppCompatActivity {
     }
 
     public void onClickStop(View v){
-        startService(intent);
+        stopService(intent);
     }
 
     //TODO: 675 page

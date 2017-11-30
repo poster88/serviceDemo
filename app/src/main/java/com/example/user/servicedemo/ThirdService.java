@@ -38,4 +38,10 @@ public class ThirdService extends Service{
         Log.d(MY_LOG, "ThirdService onUnbind");
         return super.onUnbind(intent);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(MY_LOG, "ThirdService onDestroy");
+    }
 }
